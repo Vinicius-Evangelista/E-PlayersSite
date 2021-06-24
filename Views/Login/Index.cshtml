@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Login";
+} 
+
+
+<section class="titulo_banner">
+    <section class="banner_fundo">
+        <div class="filtro_vermelho">
+            <h1>Login</h1>
+        </div>
+    </section>
+</section>
+
+<div class="container">
+    <div class="main_box">
+        <section style="margin-bottom: 80px;" class="formulario_jogador">
+            <div class="formulario">
+                <form style="height:40%" action='@Url.Action("Logar")' enctype="multipart/form-data" method="POST">
+                    <label>Email</label>
+                    <input style=" height: 16%;" type="text" name="Email" required>
+                    <label>Senha</label>
+                    <input style=" height: 16%;" type="password" name="Senha" required>
+
+                    <div class="erro">@TempData.Peek("Mensagem")</div>
+                    @* TempData mais a variável que contém a mensagem. Case dê erro. *@
+
+                    <button style=" height: 23%;" class="button_register" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

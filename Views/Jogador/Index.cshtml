@@ -1,0 +1,58 @@
+@model Jogador
+
+@{
+    ViewData["Title"] = "Jogador";
+}
+
+<section class="titulo_banner">
+    <section class="banner_fundo">
+        <div class="filtro_vermelho">
+            <h1>Cadastro do @ViewData["Title"]</h1>
+        </div>
+    </section>
+</section>
+
+<div class="container">
+    <div class="main_box">
+        <section class="formulario_jogador">
+            <div class="formulario">
+                <form action='@Url.Action("Cadastrar")' enctype="multipart/form-data" method="POST">
+                    <label>Id do Jogador</label>
+                    <input type="text" name="IdJogador">
+                    <label>Nome do Jogador</label>
+                    <input type="text" name="Nome">
+                    <label>Email</label>
+                    <input type="text" name="Email">
+                    <label for="">Senha</label>
+                    <input type="password" name="Senha">
+                    <label> Id Equipe</label>
+                    <input type="text" name="IdEquipe">
+                    <button class="button_register" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="lista_jogadores">
+            <h2> Lista de jogadores</h2>
+            <table class="listas_jogadores_table e_times ">
+                
+                <thead class="header_times listas_jogadores_table">
+                    <th class="nome_time">Nome do Jogador</span>
+                    <th class="nome_emblema">ID Equipe</span>
+                </thead>
+
+                <tbody>
+
+                    @foreach (Jogador jogador in ViewBag.Jogadores)
+                    {
+                        <tr class="td_lista">
+                            <td>@jogador.IdJogador</td>
+                            <td>@jogador.IdEquipe</td>
+                            <td><a class="button_delet" asp-area="" asp-action="Excluir" asp-route-id="@jogador.IdJogador">Excluir</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

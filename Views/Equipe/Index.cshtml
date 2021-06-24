@@ -1,0 +1,61 @@
+@model Equipe
+@{
+    ViewData["Title"] = "Equipe";
+    @* Mudar o título da página*@
+
+}
+
+<section class="fundo container">
+    <div class="filtro_lol">
+        <h1>Cadastro de @ViewData["Title"]</h1>
+    </div>
+</section>
+
+<div class="content_box container">
+    <div class="box_inputs">
+        <form class="escolha_de_times" method="POST" action='@Url.Action("Cadastrar")' enctype="multipart/form-data">
+            <div class="nome_equipe">
+                <label>Id Equipe</label>
+                <input type="text" name="IdEquipe">
+            </div>
+
+            <div class="nome_equipe">
+                <label>Nome Equipe</label>
+                <input type="text" name="Nome">
+            </div>
+
+            <div class="emblema_equipe">
+                <label>Emblema</label>
+                <input type="file" name="Imagem">
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+
+    <section class="lista_de_times">
+        <h2>Lista de Times</h2>
+        <table class="e_times">
+            <thead class="header_times">
+                <th class="nome_id">ID</th>
+                <th class="nome_time">Nome</th>
+                <th class="nome_emblema">Imagem</th>
+            </thead>
+
+            <tbody>
+
+                @foreach (Equipe equipe in ViewBag.Equipes)
+                {
+                    @* os objetos que no ViewBag.Equipes *@
+                    <tr>
+                        <td>@equipe.IdEquipe</td>
+                        <td>@equipe.Nome</td>
+                        <td><img src="/img/Equipes/@equipe.Imagem" alt="Imagem da equipe" width="70px"></td>
+                        <td><a asp-area="" asp-action="Excluir" asp-route-id="@equipe.IdEquipe">Excluir</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+</div>
